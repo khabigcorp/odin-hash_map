@@ -122,6 +122,14 @@ class LinkedList
     end
     @size -= 1
   end
+  
+  def each(&block)
+    start = @head
+    while start != nil
+      yield(start.node, start.value)
+      start = start.next_node
+    end
+  end
 
   def to_s
     super_string = ""

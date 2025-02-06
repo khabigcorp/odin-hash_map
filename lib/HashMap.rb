@@ -64,4 +64,28 @@ class HashMap
   def clear
     @storage.clear
   end
+
+  def keys
+    keys = []
+    @storage.each do |bucket|
+      if (bucket.size != 0)
+        bucket.each do |key, value|
+          keys << key
+        end
+      end
+    end
+    keys
+  end
+
+  def values
+    values = []
+    @storage.each do |bucket|
+      if (bucket.size != 0)
+        bucket.each do |key, value|
+          values << value
+        end
+      end
+    end
+    values
+  end
 end
