@@ -88,4 +88,16 @@ class HashMap
     end
     values
   end
+
+  def entries
+    entries = []
+    @storage.each do |bucket|
+      if (bucket.size != 0)
+        bucket.each do |key, value|
+          entries << [key, value]
+        end
+      end
+    end
+    entries
+  end
 end
