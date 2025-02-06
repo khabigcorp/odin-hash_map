@@ -14,5 +14,9 @@ class HashMap
        
     hash_code
   end
-  
+
+  def set(key, value)
+    current_bucket = @storage[hash(key)]
+    if current_bucket.find
+  end
 end
