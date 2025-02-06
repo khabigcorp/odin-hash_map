@@ -8,16 +8,13 @@ class LinkedList
   end
   
   def append(node)
-    add_node = Node.new
-    add_node.value = node
-
     if !@tail.nil?
-      @tail.next_node = add_node
+      @tail.next_node = node
     else
-      @head = add_node
+      @head = node
     end
     
-    @tail = add_node
+    @tail = node
     
     @size += 1
   end

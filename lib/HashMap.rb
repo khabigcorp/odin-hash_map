@@ -1,9 +1,10 @@
 require './lib/LinkedList.rb'
-
+require './lib/Node.rb'
 class HashMap
   def intialize(load, capacity)
     @load = load
     @capacity = capacity
+    @storage = Array.new(capacity)
   end
 
   def hash(key)
@@ -16,7 +17,15 @@ class HashMap
   end
 
   def set(key, value)
-    current_bucket = @storage[hash(key)]
-    if current_bucket.find
+    current_bucket = @storage[hash(key) % capacity]
+    if current_bucket.contains?(key)
+      current_bucket.at(current_bucket.find(key)).value = value
+    else
+      node = Node.new
+      node.key = key
+      node.value = value
+      current_bucket.append(node)
+    end
+    @size += 1
   end
 end
