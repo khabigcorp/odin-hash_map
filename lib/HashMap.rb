@@ -60,4 +60,8 @@ class HashMap
   def length
     return @key_count
   end
+
+  def clear
+    @storage.clear
+  end
 end
