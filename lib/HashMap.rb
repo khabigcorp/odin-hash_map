@@ -36,7 +36,6 @@ class HashMap
 
   def get(key)
     current_bucket = @storage[hash(key) %  @capacity]
-    puts current_bucket.head
     if current_bucket.contains?(key)
       return current_bucket.at(current_bucket.find(key)).value
     else
@@ -46,16 +45,16 @@ class HashMap
   end
 
   def has?(key)
-    current_bucket = @storage[hash(key) % capacity]
+    current_bucket = @storage[hash(key) % @capacity]
     return current_bucket.contains?(key)
   end
 
   def remove(key)
-    current_bucket = @storage[hash(key) % capacity]
+    current_bucket = @storage[hash(key) % @capacity]
     if current_bucket.contains?(key)
       key_location = current_bucket.find(key)
       key_value = current_bucket.at(key_location).value
-      current_bucket.remove(key_location)
+      current_bucket.remove_at(key_location)
       return key_value
     else
       return nil
@@ -112,7 +111,7 @@ class HashMap
     @capacity = @capacity*1.25
     @storage = Array.new(@capacity) { |item| item = LinkedList.new }
     each_entry(old_container) do |key, value|
-      set('key', 'value')
+      set(key, value)
     end
   end
 end

@@ -58,11 +58,17 @@ class LinkedList
   def pop
     if @size == 0
       return nil
+    elsif @size == 1
+      @head = nil
+      @tail = nil
+      @size -= 1
+      return nil
+    else
+      new_tail = at(@size-2)
+      new_tail.next_node = nil
+      @tail = new_tail
+      @size -= 1
     end
-    
-    self.at(@size-2).next_node = nil
-    @tail = nil
-    @size -= 1
   end
 
   def contains?(key)
