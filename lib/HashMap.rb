@@ -28,4 +28,30 @@ class HashMap
     end
     @size += 1
   end
+
+  def get(key)
+    current_bucket = @storage[hash(key) % capacity]
+    if current_bucket.contains?(key)
+      return current_bucket.at(current_bucket.find(key)).value
+    else
+      return nil
+    end
+  end
+
+  def has?(key)
+    current_bucket = @storage[hash(key) % capacity]
+    return current_bucket.contains?(key)
+  end
+
+  def remove(key)
+    current_bucket = @storage[hash(key) % capacity]
+    if current_bucket.contains?(key)
+      key_location = current_bucket.find(key)
+      key_value = current_bucket.at(key_location).value
+      current_bucket.remove(key_location)
+      return key_value
+    else
+      return nil
+    end
+  end
 end
