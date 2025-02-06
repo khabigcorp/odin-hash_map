@@ -93,13 +93,22 @@ class HashMap
 
   private
 
-  def each_entry(&block)
-    @storage.each do |bucket|
+  def each_entry(container = @storage)
+    container.each do |bucket|
       if (bucket.size != 0)
         bucket.each do |key, value|
-          block.call(key, value)
+          yield(key, value)
         end
       end
+    end
+  end
+
+  def resize()
+    old_container = @storage
+    @capacity = @capacity*1.25
+    @storage = Array.new(@capacity) { |item| item = LinkedList.new }
+    each_entry(old_container) do |key, value|
+      set('key', 'value')
     end
   end
 end
