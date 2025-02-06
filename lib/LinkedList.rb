@@ -1,1 +1,1 @@
-require './lib/LinkedList.rb'
+require './lib/Node.rb'

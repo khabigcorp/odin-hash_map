@@ -1,2 +1,2 @@
-require './lib/HashMap.rb'
+require './lib/LinkedList.rb'
 
