@@ -65,10 +65,10 @@ class LinkedList
     @size -= 1
   end
 
-  def contains?(value)
+  def contains?(key)
     node = @head
     while !node.nil?
-      if (node.value == value)
+      if (node.key == key)
         return true
       end
       node = node.next_node
@@ -122,11 +122,11 @@ class LinkedList
     end
     @size -= 1
   end
-  
+
   def each(&block)
     start = @head
     while start != nil
-      yield(start.node, start.value)
+      yield(start.key, start.value)
       start = start.next_node
     end
   end

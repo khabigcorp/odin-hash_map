@@ -1,10 +1,10 @@
 require './lib/LinkedList.rb'
 require './lib/Node.rb'
 class HashMap
-  def intialize(load, capacity)
+  def initialize(load)
     @load = load
-    @capacity = capacity
-    @storage = Array.new(capacity)
+    @capacity = 20
+    @storage = Array.new(20) {|item| item = LinkedList.new}
     @key_count = 0
   end
 
@@ -18,7 +18,7 @@ class HashMap
   end
 
   def set(key, value)
-    current_bucket = @storage[hash(key) % capacity]
+    current_bucket = @storage[hash(key) % @capacity]
     if current_bucket.contains?(key)
       current_bucket.at(current_bucket.find(key)).value = value
     else
@@ -31,10 +31,12 @@ class HashMap
   end
 
   def get(key)
-    current_bucket = @storage[hash(key) % capacity]
+    current_bucket = @storage[hash(key) %  @capacity]
+    puts current_bucket.head
     if current_bucket.contains?(key)
       return current_bucket.at(current_bucket.find(key)).value
     else
+      puts "Couldn't find key"
       return nil
     end
   end
