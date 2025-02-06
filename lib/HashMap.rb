@@ -5,6 +5,7 @@ class HashMap
     @load = load
     @capacity = capacity
     @storage = Array.new(capacity)
+    @key_count = 0
   end
 
   def hash(key)
@@ -26,7 +27,7 @@ class HashMap
       node.value = value
       current_bucket.append(node)
     end
-    @size += 1
+    @key_count += 1
   end
 
   def get(key)
@@ -53,5 +54,10 @@ class HashMap
     else
       return nil
     end
+    @key_count -= 1
+  end
+
+  def length
+    return @key_count
   end
 end
