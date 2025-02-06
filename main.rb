@@ -14,4 +14,9 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 
-puts(test.get('kite'))
+test.set('frog', 'brown')
+test.get('frog')
+
+p test.keys
+p test.values
+p test.entries

@@ -77,11 +77,11 @@ class LinkedList
     return false
   end
 
-  def find(value)
+  def find(key)
     node = @head
     index = 0
     while !node.nil?
-      if (node.value == value)
+      if (node.key == key)
         return index
       end
       index += 1

@@ -69,37 +69,37 @@ class HashMap
 
   def keys
     keys = []
-    @storage.each do |bucket|
-      if (bucket.size != 0)
-        bucket.each do |key, value|
-          keys << key
-        end
-      end
+    each_entry do |key, value|
+      keys << key
     end
     keys
   end
 
   def values
     values = []
-    @storage.each do |bucket|
-      if (bucket.size != 0)
-        bucket.each do |key, value|
-          values << value
-        end
-      end
+    each_entry do |key, value|
+      values << value
     end
     values
   end
 
   def entries
     entries = []
+    each_entry do |key, value|
+      entries << [key, value]
+    end
+    entries
+  end
+
+  private
+
+  def each_entry(&block)
     @storage.each do |bucket|
       if (bucket.size != 0)
         bucket.each do |key, value|
-          entries << [key, value]
+          block.call(key, value)
         end
       end
     end
-    entries
   end
 end
