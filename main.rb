@@ -14,7 +14,9 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 
-test.set('frog', 'brown')
+p entries
+test.set('mouse', 'grey')
+p entries
 test.get('frog')
 
 p test.keys

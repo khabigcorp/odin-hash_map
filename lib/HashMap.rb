@@ -1,10 +1,10 @@
 require './lib/LinkedList.rb'
 require './lib/Node.rb'
 class HashMap
-  def initialize(load)
-    @load = load
-    @capacity = 20
-    @storage = Array.new(20) {|item| item = LinkedList.new}
+  def initialize(load_factor)
+    @load_factor = load_factor
+    @capacity = 16
+    @storage = Array.new(16) {|item| item = LinkedList.new}
     @key_count = 0
   end
 
@@ -28,6 +28,10 @@ class HashMap
       current_bucket.append(node)
     end
     @key_count += 1
+
+    if (@key_count.to_f / @capacity > 0.75)
+      resize
+    end
   end
 
   def get(key)
